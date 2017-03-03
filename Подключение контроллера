@@ -1,0 +1,26 @@
+	МОНТИРОВАНИЕ КОНТРОЛЛЕРА RGB-ЛЕНТЫ
+
+	1) проверка подключения устройства
+adonai@vostok-2 ~ $ ls -a /dev/ttyUSB0 
+/dev/ttyUSB0
+
+	2) проверка прав
+adonai@vostok-2 ~ $ ls -al /dev/ttyUSB0 
+crw-rw---- 1 root dialout 188, 0 дек 11 15:27 /dev/ttyUSB0
+
+	3) предоставление прав на запись пользователю и проверка
+adonai@vostok-2 ~ $ sudo chmod o+rw /dev/ttyUSB0 
+adonai@vostok-2 ~ $ ls -al /dev/ttyUSB0 
+crw-rw-rw- 1 root dialout 188, 0 дек 11 15:27 /dev/ttyUSB0
+
+
+
+	ВКЛЮЧЕНИЕ ДИОДОВ НА ЛЕНТЕ - пути 1, 2 и 3 на 100 (значение от 0 до 254) 
+
+adonai@vostok-2 ~/path $ python3
+Python 3.5.2 |Anaconda 4.2.0 (64-bit)| (default, Jul  2 2016, 17:53:06) 
+[GCC 4.4.7 20120313 (Red Hat 4.4.7-1)] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import random_color_flash
+>>> random_color_flash.ser.write(bytearray([100,100,100,0,0,0,0,0,0,0,0,0,0xff]))
+
