@@ -1,0 +1,10 @@
+[Unit]
+Description=Oblako server
+After=hetwork.target
+ 
+[Service]
+ExecStart=/usr/bin/python '/home/alarm/oblako/server.py'
+Type=simple
+   
+[Install]
+WantedBy=multi-user.target
