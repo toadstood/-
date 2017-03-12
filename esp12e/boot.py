@@ -21,10 +21,7 @@ def do_connect():
     import network
     import webrepl
     #список известных сетей в формате [(b'SSID',b'PASS'),...]
-    SP = [(b'OBLAKO', b'NOT_A_PASSWORD_ACTUALLY'),\
-     (b'CANDIDUM-HOME', b'NOT_A_PASSWORD_ACTUALLY'),\
-     (b'CANDIDUM', b'NOT_A_PASSWORD_ACTUALLY'), (b'MGTS_GPON_9231', b'NOT_A_PASSWORD_ACTUALLY'),\
-     (b'TRYPTAMINE', b'NOT_A_PASSWORD_ACTUALLY')]
+    SP = [(b'OBLAKO', b'NOT_A_PASSWORD_ACTUALLY')]
     ssid=666
     #настройка интерфейса
     sta_if = network.WLAN(network.STA_IF)
