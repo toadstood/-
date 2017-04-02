@@ -4,12 +4,18 @@
 #Реагируем на команды
 import socket
 import os
+import sys
+import test
 from time import sleep
 #Настройка порта
 sock = socket.socket()
 sock.bind(('', 9090))
 sock.listen(1)
-folder="/home/alarm/oblako/" #Жестко заданная дириктория скрипта!
+if sys.argv[1]:
+	folder=sys.argv[1]
+	print(folder)
+else:
+	folder="/home/alarm/oblako/" #Жестко заданная дириктория скрипта!
 #Задавать полный путь важно для корректной работы service юнита
 #server.service
 while True:
@@ -17,6 +23,7 @@ while True:
 	print ('connected:', addr)
 	while True:
 		data = conn.recv(1024)
+		os.system(folder+"kill.sh "+folder)
 		if not data:
 			break
 		if b"grom" in data:
@@ -29,16 +36,15 @@ while True:
 			conn.send(b'ok')
 		if b"command 3" in data:
 			print("выполнена rgb_path_02.py")
-			os.system(folder+"rgb_path_02.py")
+			os.system(folder+"rgb_path_02.py &")
 			conn.send(b'ok')
 		if b"command 4" in data:
 			print("выполнена комманда rgb_path_03.py")
-			os.system(folder+"rgb_path_03.py")
+			os.system(folder+"rgb_path_03.py &")
 			conn.send(b'ok')
 		if b"command 5" in data:
 			print("выполнена команда 5")
-			os.system(folder+"make_it_color.py")
+			os.system(folder+"make_it_color.py &")
 			conn.send(b'ok')
 		#conn.send(data.upper())
 	conn.close()
-
